@@ -1,0 +1,22 @@
+<div class="cars-home-page">
+    <div class="header">
+      <h1>Choose the car that<br>suits you</h1>
+      <a href="">View All &#x279C;</a>
+    </div>
+  
+    <div class="car-list">
+      <div class="car-card" *ngFor="let car of cars">
+        <div class="car-image">
+          <img [src]="car.image" alt="{{ car.name }}" />
+        </div>
+        <h3>{{ car.name }}</h3>
+        <p>{{ car.type }}</p>
+        <p class="price">${{ car.price }} per day</p>
+        <div class="features">
+          <span *ngFor="let feature of car.features">{{ feature }}</span>
+        </div>
+        <button class="view-details">View Details</button>
+      </div>
+    </div>
+</div>
+  
