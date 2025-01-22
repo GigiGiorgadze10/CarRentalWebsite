@@ -1,17 +1,17 @@
 <header>
-    <div class="logo">
+    <div class="logo" (click)="home()">
         <img src="assets/logo/Vector.png" alt="">
         <h1>Car Rental</h1>
     </div>
     <nav class="nav-links">
-        <a href="">Home</a>
-        <a href="">Vehicle</a>
+        <a href="/">Home</a>
+        <a href="/cars">Vehicle</a>
         <a href="">Details</a>
         <a href="">About Us</a>
         <a href="">Contact Us</a>
     </nav>
     <div class="profile">
         <img src="assets\icon\profile.png" alt="">
-        <button>Sign In</button>
+        <button (click)="user()">Sign In</button>
     </div>
 </header>

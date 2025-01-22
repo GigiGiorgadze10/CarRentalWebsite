@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService, Car } from '../../services/car.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars-home-page',
@@ -12,9 +13,13 @@ import { CommonModule } from '@angular/common';
 export class CarsHomePageComponent implements OnInit {
   cars: Car[] = [];
 
-  constructor(private carService: CarService) {}
+  constructor(private carService: CarService, private router: Router) {}
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
+  }
+
+  goToRentCar(): void {
+    this.router.navigate(['/rent-car']);
   }
 }

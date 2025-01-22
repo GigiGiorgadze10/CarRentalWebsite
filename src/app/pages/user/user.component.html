@@ -1,0 +1,67 @@
+<section class="login-container">
+    <div class="login-wrapper">
+      <h1>Greetings! Welcome to luxury gift shop.</h1>
+      <p *ngIf="isSignInMode">Use your email and password to log in</p>
+      <p *ngIf="!isSignInMode">Create your account using email and password</p>
+  
+      <form *ngIf="isSignInMode" (ngSubmit)="handleSignIn(email.value, password.value)">
+        <div class="form-group">
+          <input type="email" #email placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <input type="password" #password placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="continue-btn">Sign In</button>
+      </form>
+  
+      <form *ngIf="!isSignInMode" (ngSubmit)="handleSignUp(name.value, email.value, password.value, confirmPassword.value)">
+        <div class="form-group">
+          <input type="text" #name placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" #email placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <input type="password" #password placeholder="Create your password" required />
+        </div>
+        <div class="form-group">
+          <input type="password" #confirmPassword placeholder="Confirm your password" required />
+        </div>
+        <button type="submit" class="continue-btn">Sign Up</button>
+      </form>
+  
+      <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+        {{ errorMessage }}
+      </div>
+  
+      <div class="toggle-form">
+        <p *ngIf="isSignInMode">
+          Don't have an account? 
+          <button class="toggle-btn" (click)="toggleForm()">Sign Up</button>
+        </p>
+        <p *ngIf="!isSignInMode">
+          Already have an account? 
+          <button class="toggle-btn" (click)="toggleForm()">Sign In</button>
+        </p>
+      </div>
+  
+      <div class="divider">
+        <span>or</span>
+      </div>
+  
+      <div class="social-login">
+        <button class="google-btn">
+          <img src="assets/images/Brands/search.png" alt="Google" />
+          Continue with Google
+        </button>
+        <button class="apple-btn">
+          <img src="assets/images/Brands/apple-logo.png" alt="Apple" />
+          Continue with Apple
+        </button>
+      </div>
+  
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a>
+      </div>
+    </div>
+</section>

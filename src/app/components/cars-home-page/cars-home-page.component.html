@@ -15,7 +15,7 @@
         <div class="features">
           <span *ngFor="let feature of car.features">{{ feature }}</span>
         </div>
-        <button class="view-details">View Details</button>
+        <button class="view-details" (click)="goToRentCar()">View Details</button>
       </div>
     </div>
 </div>
