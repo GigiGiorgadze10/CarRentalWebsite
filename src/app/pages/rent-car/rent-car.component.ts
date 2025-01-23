@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Car, CarService } from '../../services/car.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-rent-car',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './rent-car.component.html',
-  styleUrl: './rent-car.component.css'
+  styleUrls: ['./rent-car.component.css']
 })
 export class RentCarComponent implements OnInit {
+  car: Car | null = null;
 
-  cars: Car[] = [];
-  
-    constructor(private carService: CarService, private router: Router) {}
-  
-    ngOnInit(): void {
-      this.cars = this.carService.getCars();
-    }
+  constructor(private route: ActivatedRoute, private carService: CarService) {}
 
-    goToRentCar(): void {
-      this.router.navigate(['/rent-car']);
-    }
-  
+  ngOnInit(): void {
+    // Retrieve the ID from the route and fetch the car details
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.car = this.carService.getCarById(id);
+  }
 }

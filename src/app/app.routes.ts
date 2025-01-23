@@ -8,6 +8,6 @@ import { UserComponent } from './pages/user/user.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'cars', component: CarsComponent},
-  { path: 'rent-car', component: RentCarComponent },
+  { path: 'rent-car/:id', component: RentCarComponent },
   { path: 'user', component: UserComponent },
 ];

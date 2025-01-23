@@ -24,9 +24,19 @@ export class CarService {
     { name: 'Mercedes', image: "assets/images/365c2d35-bb81-4660-b0f9-4c926fc45406.png", type: 'Sedan', price: 70, features: ['Automat', 'PB 95', 'Air Conditioner'] },
   ];
 
+  private selectedCar: Car | null = null;
+
   constructor() {}
 
-  getCars() {
+  getCars(): Car[] {
     return this.cars;
+  }
+
+  setSelectedCar(car: Car): void {
+    this.selectedCar = car;
+  }
+
+  getSelectedCar(): Car | null {
+    return this.selectedCar;
   }
 }

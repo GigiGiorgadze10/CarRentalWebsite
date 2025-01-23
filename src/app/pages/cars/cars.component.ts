@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Car, CarService } from '../../services/car-list.service';
+import { Car, CarService } from '../../services/car.service';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cars',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cars.component.html',
-  styleUrl: './cars.component.css',
+  styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {
   cars: Car[] = [];
@@ -19,7 +20,7 @@ export class CarsComponent implements OnInit {
     this.cars = this.carService.getCars();
   }
 
-  goToRentCar(): void {
-    this.router.navigate(['/rent-car']);
+  goToRentCar(carId: number): void {
+    this.router.navigate(['/rent-car', carId]); // Navigate to the RentCarComponent with the car's ID
   }
 }

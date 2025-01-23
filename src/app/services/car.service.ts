@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 export interface Car {
+  id: number;
   name: string;
   image: string;
-  type: string;
   price: number;
-  features: string[];
+  type: string;
 }
 
 @Injectable({
@@ -13,17 +13,19 @@ export interface Car {
 })
 export class CarService {
   private cars: Car[] = [
-    { name: 'Mercedes', image: "assets/images/pngwing.png", type: 'SUV', price: 100, features: ['Automat', 'PB 95', 'Air Conditioner'] },
-    { name: 'Toyota', image: "assets/images/pngwing.com.png", type: 'Sedan', price: 25, features: ['Automat', 'PB 95', 'Air Conditioner'] },
-    { name: 'Nissan', image: "assets/images/pngwing.com (5).png", type: 'SUV', price: 45, features: ['Automat', 'PB 95', 'Air Conditioner'] },
-    { name: 'Lamborghini', image: "assets/images/pngwing.com (4).png", type: 'Sport', price: 150, features: ['Automat', 'PB 95', 'Air Conditioner'] },
-    { name: 'Chervolet', image: "assets/images/pngwing.com (3).png", type: 'Hatchback', price: 35, features: ['Automat', 'PB 95', 'Air Conditioner'] },
-    { name: 'Mercedes', image: "assets/images/pngwing.com (1).png", type: 'Sedan', price: 70, features: ['Automat', 'PB 95', 'Air Conditioner'] },
+    {id:0, name: 'Mercedes', image: "assets/images/pngwing.png", type: 'SUV', price: 100},
+    {id:1, name: 'Toyota', image: "assets/images/pngwing.com.png", type: 'Sedan', price: 25},
+    {id:2, name: 'Nissan', image: "assets/images/pngwing.com (5).png", type: 'SUV', price: 45},
+    {id:3, name: 'Lamborghini', image: "assets/images/pngwing.com (4).png", type: 'Sport', price: 150 },
+    {id:4, name: 'Chevrolet', image: "assets/images/pngwing.com (3).png", type: 'Hatchback', price: 35, },
+    {id:5, name: 'Mercedes', image: "assets/images/pngwing.com (1).png", type: 'Sedan', price: 70},
   ];
 
-  constructor() {}
-
-  getCars() {
+  getCars(): Car[] {
     return this.cars;
+  }
+
+  getCarById(id: number): Car | null {
+    return this.cars.find(car => car.id === id) || null;
   }
 }

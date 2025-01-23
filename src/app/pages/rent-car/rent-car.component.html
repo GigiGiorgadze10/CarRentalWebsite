@@ -1,87 +1,67 @@
 
-    <div class="rent-car">
-        <div class="car-model-price-image">
-            <h1>BMW</h1>
-            <p>$25/day</p>
-            <img src="assets/images/pngwing.com (4).png" alt="Car Image">
-        </div>
-        <div class="car-details">
-            <h2>Technical Specification</h2>
-            <div class="car-specs">
-                <div>
-                    <h3>Gear Box</h3>
-                    <p>Automat</p>
-                </div>
-                <div>
-                    <h3>Fuel</h3>
-                    <p>Petrol</p>
-                </div>
-                <div>
-                    <h3>Doors</h3>
-                    <p>2</p>
-                </div>
-                <div>
-                    <h3>Air Conditioner</h3>
-                    <p>Yes</p>
-                </div>
-                <div>
-                    <h3>Seats</h3>
-                    <p>5</p>
-                </div>
-                <div>
-                    <h3>Distance</h3>
-                    <p>500</p>
-                </div>
-            </div>
-            <button>Rent a car</button>
-        </div>
+<div class="rent-car">
+    <div class="car-model-price-image" *ngIf="car">
+        <h1>{{ car.name }}</h1>
+        <p>${{ car.price }} per day</p>
+        <img [src]="car.image" alt="{{ car.name }}" />
     </div>
-    <div class="car-equipment">
-        <h2>Car Equipment</h2>
+    <div class="car-details">
+        <h2>Technical Specification</h2>
+        <div class="car-specs">
+            <div>
+                <h3>Gear Box</h3>
+                <p>Automat</p>
+            </div>
+            <div>
+                <h3>Fuel</h3>
+                <p>Petrol</p>
+            </div>
+            <div>
+                <h3>Doors</h3>
+                <p>2</p>
+            </div>
+            <div>
+                <h3>Air Conditioner</h3>
+                <p>Yes</p>
+            </div>
+            <div>
+                <h3>Seats</h3>
+                <p>5</p>
+            </div>
+            <div>
+                <h3>Distance</h3>
+                <p>500</p>
+            </div>
+        </div>
+        <button>Rent a car</button>
+    </div>
+</div>
+<div class="car-equipment">
+    <h2>Car Equipment</h2>
+    <div>
         <div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>ABS</p>
-            </div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>Air Bags</p>
-            </div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>Cruise Control</p>
-            </div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>ABS</p>
-            </div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>Air Bags</p>
-            </div>
-            <div>
-                <img src="assets/icon/Frame 125.png" alt="">
-                <p>Air Conditioner</p>
-            </div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>ABS</p>
         </div>
-    </div>
-<div class="similar-cars">
-    <div class="header">
-        <h1>Other cars</h1>
-        <a href="/cars">View All &#x279C;</a>
-    </div>
-    <div class="car-list">
-        <div class="car-card" *ngFor="let car of cars">
-          <div class="car-image">
-            <img [src]="car.image" alt="{{ car.name }}" />
-          </div>
-          <h3>{{ car.name }}</h3>
-          <p>{{ car.type }}</p>
-          <p class="price">${{ car.price }} per day</p>
-          <div class="features">
-            <span *ngFor="let feature of car.features">{{ feature }}</span>
-          </div>
-          <button class="view-details" (click)="goToRentCar()">View Details</button>
+        <div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>Air Bags</p>
+        </div>
+        <div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>Cruise Control</p>
+        </div>
+        <div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>ABS</p>
+        </div>
+        <div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>Air Bags</p>
+        </div>
+        <div>
+            <img src="assets/icon/Frame 125.png" alt="">
+            <p>Air Conditioner</p>
         </div>
     </div>
 </div>

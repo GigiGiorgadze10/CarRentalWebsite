@@ -19,7 +19,7 @@ export class CarsHomePageComponent implements OnInit {
     this.cars = this.carService.getCars();
   }
 
-  goToRentCar(): void {
-    this.router.navigate(['/rent-car']);
+  goToRentCar(carId: number): void {
+    this.router.navigate(['/rent-car', carId]);
   }
 }

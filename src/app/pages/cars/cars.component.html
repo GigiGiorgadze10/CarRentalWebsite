@@ -1,43 +1,41 @@
 <div class="filter">
     <h1>Select a vehicle group</h1>
     <div class="categories">
-        <div>
-            <a href="">All vehicles</a>
-        </div>
-        <div>
-            <img src="assets/icon/sedan.png" alt="">
-            <p>Sedan</p>
-        </div>
-        <div>
-            <img src="assets/icon/cabriolet.png" alt="">
-            <p>Cabriolet</p>
-        </div>
-        <div>
-            <img src="assets/icon/pickup.png" alt="">
-            <p>Pickup</p>
-        </div>
-        <div>
-            <img src="assets/icon/suv.png" alt="">
-            <p>Suv</p>
-        </div>
-        <div>
-            <img src="assets/icon/minivan.png" alt="">
-            <p>Minivan</p>
-        </div>
+      <div>
+        <a href="">All vehicles</a>
+      </div>
+      <div>
+        <img src="assets/icon/sedan.png" alt="">
+        <p>Sedan</p>
+      </div>
+      <div>
+        <img src="assets/icon/cabriolet.png" alt="">
+        <p>Cabriolet</p>
+      </div>
+      <div>
+        <img src="assets/icon/pickup.png" alt="">
+        <p>Pickup</p>
+      </div>
+      <div>
+        <img src="assets/icon/suv.png" alt="">
+        <p>SUV</p>
+      </div>
+      <div>
+        <img src="assets/icon/minivan.png" alt="">
+        <p>Minivan</p>
+      </div>
     </div>
-
-</div>
-<div class="car-list">
-    <div class="car-card" *ngFor="let car of cars">
+  </div>
+  
+  <div class="car-list">
+    <div class="car-card" *ngFor="let car of cars; let i = index">
       <div class="car-image">
         <img [src]="car.image" alt="{{ car.name }}" />
       </div>
       <h3>{{ car.name }}</h3>
-      <p>{{ car.type }}</p>
       <p class="price">${{ car.price }} per day</p>
-      <div class="features">
-        <span *ngFor="let feature of car.features">{{ feature }}</span>
-      </div>
-      <button class="view-details" (click)="goToRentCar()">View Details</button>
+      <button class="view-details" (click)="goToRentCar(i)">View Details</button> <!-- Use index as the ID -->
     </div>
-</div>
+  </div>
+  
+  
