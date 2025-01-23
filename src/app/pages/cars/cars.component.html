@@ -1,41 +1,29 @@
 <div class="filter">
     <h1>Select a vehicle group</h1>
     <div class="categories">
-      <div>
-        <a href="">All vehicles</a>
+      <div 
+        [class.selected]="selectedCategory === ''" 
+        (click)="filterCars('')">
+        <a href="javascript:void(0)">All vehicles</a>
       </div>
-      <div>
-        <img src="assets/icon/sedan.png" alt="">
-        <p>Sedan</p>
-      </div>
-      <div>
-        <img src="assets/icon/cabriolet.png" alt="">
-        <p>Cabriolet</p>
-      </div>
-      <div>
-        <img src="assets/icon/pickup.png" alt="">
-        <p>Pickup</p>
-      </div>
-      <div>
-        <img src="assets/icon/suv.png" alt="">
-        <p>SUV</p>
-      </div>
-      <div>
-        <img src="assets/icon/minivan.png" alt="">
-        <p>Minivan</p>
+      <div 
+        *ngFor="let category of categories" 
+        [class.selected]="selectedCategory === category" 
+        (click)="filterCars(category)">
+        <img [src]="'assets/icon/' + category.toLowerCase() + '.png'" alt="{{ category }}" />
+        <p>{{ category }}</p>
       </div>
     </div>
   </div>
   
   <div class="car-list">
-    <div class="car-card" *ngFor="let car of cars; let i = index">
+    <div class="car-card" *ngFor="let car of filteredCars">
       <div class="car-image">
         <img [src]="car.image" alt="{{ car.name }}" />
       </div>
       <h3>{{ car.name }}</h3>
       <p class="price">${{ car.price }} per day</p>
-      <button class="view-details" (click)="goToRentCar(i)">View Details</button> <!-- Use index as the ID -->
+      <button class="view-details" (click)="goToRentCar(car.id)">View Details</button>
     </div>
   </div>
-  
   

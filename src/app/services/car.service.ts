@@ -16,8 +16,8 @@ export class CarService {
     {id:0, name: 'Mercedes', image: "assets/images/pngwing.png", type: 'SUV', price: 100},
     {id:1, name: 'Toyota', image: "assets/images/pngwing.com.png", type: 'Sedan', price: 25},
     {id:2, name: 'Nissan', image: "assets/images/pngwing.com (5).png", type: 'SUV', price: 45},
-    {id:3, name: 'Lamborghini', image: "assets/images/pngwing.com (4).png", type: 'Sport', price: 150 },
-    {id:4, name: 'Chevrolet', image: "assets/images/pngwing.com (3).png", type: 'Hatchback', price: 35, },
+    {id:3, name: 'Lamborghini', image: "assets/images/pngwing.com (4).png", type: 'sedan', price: 150 },
+    {id:4, name: 'Chevrolet', image: "assets/images/pngwing.com (3).png", type: 'sedan', price: 35, },
     {id:5, name: 'Mercedes', image: "assets/images/pngwing.com (1).png", type: 'Sedan', price: 70},
   ];
 
