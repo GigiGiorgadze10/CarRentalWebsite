@@ -1,75 +1,56 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  isSignUp: boolean = false;
+  signInForm: FormGroup;
+  signUpForm: FormGroup;
 
-  isSignInMode = true;
-  errorMessage: string = '';
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.signInForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    this.signUpForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   toggleForm(): void {
-    this.isSignInMode = !this.isSignInMode;
-    this.errorMessage = '';
+    this.isSignUp = !this.isSignUp;
   }
 
-  handleSignIn(email: string, password: string): void {
-    this.errorMessage = '';
-    if (!email || !password) {
-      this.errorMessage = 'Please fill in all fields.';
-      return;
+  onSignIn(): void {
+    if (this.signInForm.valid) {
+      const username = this.signInForm.value.email;
+      const role = username.includes('admin') ? 'Admin' : 'User'; 
+      this.authService.login(username, role);
+      alert('Sign-In Successful!');
+      this.router.navigate(['/']);
     }
-
-    this.authService.login(email, password).subscribe({
-      next: (response) => {
-        alert('Sign-In Successful!');
-        this.router.navigate(['/dashboard']); // Redirect to dashboard or desired route
-      },
-      error: (err) => {
-        this.errorMessage = 'Invalid email or password.';
-      },
-    });
   }
 
-  handleSignUp(name: string, email: string, password: string, confirmPassword: string): void {
-    this.errorMessage = '';
-    if (!name || !email || !password || !confirmPassword) {
-      this.errorMessage = 'Please fill in all fields.';
-      return;
+  onSignUp(): void {
+    if (this.signUpForm.valid) {
+      if (this.signUpForm.value.password !== this.signUpForm.value.confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      alert('Sign-Up Successful!');
+      this.isSignUp = false;
     }
-
-    if (!this.isValidEmail(email)) {
-      this.errorMessage = 'Invalid email format.';
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      this.errorMessage = 'Passwords do not match.';
-      return;
-    }
-
-    this.authService.register(name, email, password).subscribe({
-      next: () => {
-        alert('Sign-Up Successful! You can now Sign In.');
-        this.isSignInMode = true;
-      },
-      error: (err) => {
-        this.errorMessage = 'Registration failed. Please try again.';
-      },
-    });
-  }
-
-  isValidEmail(email: string): boolean {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
   }
 }

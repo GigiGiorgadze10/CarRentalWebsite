@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://api.escuelajs.co/api/v1';
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private roleSubject = new BehaviorSubject<string | null>(null);
+  private usernameSubject = new BehaviorSubject<string | null>(null);
 
-  constructor(private http: HttpClient) {}
-
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
-      map((response) => {
-        localStorage.setItem('token', response.access_token); 
-        return response;
-      })
-    );
-  }
-
-  register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/users`, { name, email, password });
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  login(username: string, role: string): void {
+    this.isAuthenticatedSubject.next(true);
+    this.roleSubject.next(role);
+    this.usernameSubject.next(username);
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    this.isAuthenticatedSubject.next(false);
+    this.roleSubject.next(null);
+    this.usernameSubject.next(null);
+  }
+
+  getAuthStatus(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
+  }
+
+  getRole(): Observable<string | null> {
+    return this.roleSubject.asObservable();
+  }
+
+  getUsername(): Observable<string | null> {
+    return this.usernameSubject.asObservable();
   }
 }
