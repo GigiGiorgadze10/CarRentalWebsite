@@ -33,7 +33,8 @@
                 <p>500</p>
             </div>
         </div>
-        <button>Rent a car</button>
+        <button (click)="onRentCar()" [disabled]="!isAuthenticated">Rent a car</button>
+        <p *ngIf="!isAuthenticated" class="auth-warning">Please sign in to rent a car.</p>
     </div>
 </div>
 <div class="car-equipment">

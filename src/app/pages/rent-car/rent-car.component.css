@@ -212,3 +212,10 @@ button:hover {
     margin-top: 50px;
     font-family: 'inter';
   }
+
+  .auth-warning {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

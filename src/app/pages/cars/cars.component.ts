@@ -20,11 +20,11 @@ export class CarsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
-    this.filteredCars = [...this.cars]; // Initially display all cars
+    this.filteredCars = [...this.cars]; 
   }
 
   filterCars(category: string): void {
-    this.selectedCategory = category; // Update the selected category
+    this.selectedCategory = category; 
     this.filteredCars = category ? this.cars.filter(car => car.type === category) : [...this.cars];
   }
 
